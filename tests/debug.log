@@ -1,0 +1,6 @@
+[20-Feb-2018 14:28:56 Europe/Berlin] Passed: banner should be displayed during the display period
+[20-Feb-2018 14:28:56 Europe/Berlin] Passed: banner should be displayed during the display period for IPs that are not in the allowed IP list
+[20-Feb-2018 14:28:56 Europe/Berlin] Passed: banner should not display after the display period even for allowed IPs
+[20-Feb-2018 14:28:56 Europe/Berlin] Passed: banner should not display after the display period
+[20-Feb-2018 14:28:56 Europe/Berlin] Passed: banner should be displayed before the display period for IPs that are in the allowed IPs
+[20-Feb-2018 14:28:56 Europe/Berlin] Passed: banner should not be displayed before the display period for IPs that are not in the allowed IP list
