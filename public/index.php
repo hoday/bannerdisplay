@@ -7,15 +7,16 @@
 	<title>メルカリ・テスト</title>
 
 	<body>
-		<?php require_once("config.php");  ?>
+		<?php
+
+			require_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+			require_once 'setup.php';
+		?>
 
 
 		<p>This banner will be displayed: </p>
 		<div>
 			<?php
-			require __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
-
-			$log = new Monolog\Logger('name');
 
 				$banner_manager->printBanner('banner_active');
 			?>
