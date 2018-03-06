@@ -7,40 +7,39 @@ namespace Hoday\Banners;
  */
 class Banner {
 
-	protected $banner_path;
+	protected $bannerPath;
 
 	/**
 	 * __construct Create Banner object
-	 * @param String $banner_path Path to the desired banner image
+	 * @param String $bannerPath Path to the desired banner image
 	 */
-	public function __construct($banner_path) {
-		$this->banner_path = $banner_path;
+	public function __construct($bannerPath) {
+		$this->bannerPath = $bannerPath;
 	}
 
 	/**
 	* Deletes a registered banner
-	* @param  String $banner_name Name of the banner
+	* @param  String $bannerName Name of the banner
 	*/
-	public function deleteBanner($banner_name) {
-	unset($this->banners, $banner_name);
+	public function deleteBanner($bannerName) {
 	}
 
 	/**
 	* Gets the path of the graphic for the banner
-	* @param  String $banner_name Name of the banner
+	* @param  String $bannerName Name of the banner
 	* @return  String             Path to the banner graphic
 	*/
-	public function getBannerPath($banner_name) {
-	return $this->banners[$banner_name]['banner'];
+	public function getBannerPath() {
+		return $this->bannerPath;
 	}
 
 	/**
 	* Sets the path of the graphic for the banner
-	* @param  String $banner_name Name of the banner
-	* @param  String $banner_path Path to the banner graphic
+	* @param  String $bannerName Name of the banner
+	* @param  String $bannerPath Path to the banner graphic
 	*/
-	public function setBannerPath($banner_name, $banner_path) {
-	$this->banners[$banner_name]['banner'] = new Banner($banner_path);
+	public function setBannerPath($bannerPath) {
+		$this->bannerPath = $bannerPath;
 	}
 
 	/**

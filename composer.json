@@ -1,8 +1,11 @@
 {
     "require": {
-        "monolog/monolog": "1.0.*"
+        "monolog/monolog": "1.0.*",
+        "phpunit/phpunit": "4.3.*"
     },
     "autoload": {
-        "psr-4": {"Hoday\\Banners\\": "lib/Hoday/Banners"}
+        "psr-4": {
+            "Hoday\\Banners\\": "lib/Hoday/Banners/",
+            "App\\": "public/app/"}
     }
 }

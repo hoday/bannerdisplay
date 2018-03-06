@@ -9,41 +9,41 @@ use DateTime;
  */
 class BannerDisplayController {
 
-	protected $start_date;
-	protected $end_date;
-	protected $allowed_ips;
+	private $startDate;
+	private $endDate;
+	private $allowedIps;
 
 	public function __construct() {
 
-		$this->start_date = 0;
-		$this->end_date 	= PHP_INT_MAX;
-		$this->allowed_ips 	= array();
+		$this->startDate = 0;
+		$this->endDate 	= PHP_INT_MAX;
+		$this->allowedIps 	= array();
 	}
 
 	/**
 	 * Sets a start date and end date between which the banner should be visible
-	 * @param String $start_date Start date of the period
-	 * @param String $end_date   End date of the period
+	 * @param String $startDate Start date of the period
+	 * @param String $endDate   End date of the period
 	 */
-	public function setBannerPeriod($start_date, $end_date) {
-		$this->start_date = (new DateTime($start_date))->getTimestamp();
-		$this->end_date 	= (new DateTime($end_date))->getTimestamp();
+	public function setBannerPeriod($startDate, $endDate) {
+		$this->startDate = (new DateTime($startDate))->getTimestamp();
+		$this->endDate 	= (new DateTime($endDate))->getTimestamp();
 	}
 
-	public function setBannerStartDate($banner_name, $start_date) {
-		$this->banners[$banner_name]['banner_display_controller']->setBannerStartDate($start_date);
+	public function setBannerStartDate($startDate) {
+		$this->startDate = (new DateTime($startDate))->getTimestamp();
 	}
 
-	public function setBannerEndDate($banner_name, $end_date) {
-		$this->banners[$banner_name]['banner_display_controller']->setBannerEndDate($end_date);
+	public function setBannerEndDate($endDate) {
+		$this->endDate 	= (new DateTime($endDate))->getTimestamp();
 	}
 
-	public function getBannerStartDate($banner_name) {
-		return $this->banners[$banner_name]['banner_display_controller']->getBannerStartDate();
+	public function getBannerStartDate() {
+		return $this->startDate;
 	}
 
-	public function getBannerEndDate($banner_name) {
-		return $this->banners[$banner_name]['banner_display_controller']->getBannerEndDate();
+	public function getBannerEndDate() {
+		return $this->endDate;
 	}
 
 	/**
@@ -51,7 +51,7 @@ class BannerDisplayController {
 	 * @param  String $ip IP address to register
 	 */
 	public function registerAllowedIp($ip) {
-		$this->allowed_ips[$ip] = true;
+		$this->allowedIps[$ip] = true;
 	}
 
 
@@ -60,17 +60,17 @@ class BannerDisplayController {
 	 * @param  String $ip IP address to deregister
 	 */
 	public function deregisterAllowedIp($ip) {
-		unset($this->allowed_ips[$ip]);
+		unset($this->allowedIps[$ip]);
 	}
 
 	/**
 	 * Gets allowed IPs
-	 * @param  String $banner_name Name of the banner
+	 * @param  String $bannerName Name of the banner
 	 * @return Array              Array of IPs
 	 */
-		public function getAllowedIps($banner_name) {
-			return $this->banners[$banner_name]['banner_display_controller']->getAllowedIps();
-		}	
+		public function getAllowedIps() {
+			return $this->allowedIps;
+		}
 
 	/**
 	 * Returns true if the banner is visible
@@ -81,21 +81,29 @@ class BannerDisplayController {
 		$date 	= $this->getCurrentDate();
 		$ip 		= $this->getCurrentIp();
 
-		$is_during_period = ($date >= $this->start_date) && ($date <= $this->end_date) ;
-		$is_before_period = ($date < $this->start_date);
-		$is_ip_allowed    = isset($this->allowed_ips[$ip]);
+		echo $this->startDate."<br/>";
+		echo $this->endDate."<br/>";
+		print_r($this->allowedIps);
+		echo "<br/>";
 
-		if ($is_during_period) {
-			$show_banner = true;
+		echo $date."<br/>";
+		echo $ip."<br/>";
+
+		$isDuringPeriod = ($date >= $this->startDate) && ($date <= $this->endDate) ;
+		$isBeforePeriod = ($date < $this->startDate);
+		$isIpAllowed    = isset($this->allowedIps[$ip]);
+
+		if ($isDuringPeriod) {
+			$showBanner = true;
 		} else {
-			if ($is_before_period && $is_ip_allowed) {
-				$show_banner = true;
+			if ($isBeforePeriod && $isIpAllowed) {
+				$showBanner = true;
 			} else {
-				$show_banner = false;
+				$showBanner = false;
 			}
 		}
 
-		return $show_banner;
+		return $showBanner;
 	}
 
 	/**
