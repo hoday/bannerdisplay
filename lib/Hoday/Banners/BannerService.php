@@ -8,9 +8,6 @@ namespace Hoday\Banners;
  */
 class BannerService {
 
-  protected $bannerDataMapper;
-  protected $bannerVisibilityManager;
-
 	private function __construct() {
 	}
 
@@ -20,55 +17,60 @@ class BannerService {
 	 * @param  String $bannerPath Path to the banner graphic
 	 */
 	public static function create($bannerPath, $startDate, $endDate, $allowedIps) {
-		$this->bannerDataMapper->registerBanner($bannerName, $bannerPath);
+		BannerDataMapper::registerBanner($bannerName, $bannerPath);
 	}
 
   public static function getPath($id) {
-    return $this->bannerDataMapper->getPath($id);
+    return BannerDataMapper::getPath($id);
   }
 
   public static function getStartDate($id) {
-    return $this->bannerDataMapper->getStartDate($id);
+    return BannerDataMapper::getStartDate($id);
   }
 
   public static function getEndDate($id) {
-    return $this->bannerDataMapper->getEndDate($id);
+    return BannerDataMapper::getEndDate($id);
   }
 
   public static function getAllowedIps($id) {
-    return $this->bannerDataMapper->getAllowedIps($id);
+    return BannerDataMapper::getAllowedIps($id);
   }
 
   public static function setPath($id, $bannerPath) {
-    $this->bannerDataMapper->setPath($id, $bannerPath);
+    BannerDataMapper::setPath($id, $bannerPath);
   }
 
   public static function setStartDate($id, $startDate) {
-    $this->bannerDataMapper->setStartDate($id, $startDate);
+    BannerDataMapper::setStartDate($id, $startDate);
   }
 
   public static function setEndDate($id, $endDate) {
-    $this->bannerDataMapper->setEndDate($id, $endDate);
+    BannerDataMapper::setEndDate($id, $endDate);
   }
 
   public static function setAllowedIps($id, $allowedIps) {
-    $this->bannerDataMapper->setAllowedIps($id, $allowedIps);
+    BannerDataMapper::setAllowedIps($id, $allowedIps);
   }
 
   public static function registerAllowedIp($id, $allowedIp) {
-    $this->bannerDataMapper->registerAllowedIp($id, $allowedIp);
+    BannerDataMapper::registerAllowedIp($id, $allowedIp);
   }
 
   public static function deregisterAllowedIp($id, $allowedIp) {
-    $this->bannerDataMapper->deregisterAllowedIp($id, $allowedIp);
+    BannerDataMapper::deregisterAllowedIp($id, $allowedIp);
   }
 
   public static function delete($id) {
-		$this->bannerDataMapper->delete($id);
+		BannerDataMapper::delete($id);
 	}
 
   public static function isVisible($id) {
-    return $this->bannerVisibilityManager->isVisible($startDate, $endDate, $allowedIps);
+
+    $startDate  = BannerDataMapper::getStartDate($id);
+    $endDate    = BannerDataMapper::getEndDate($id);
+    $allowedIps = BannerDataMapper::getAllowedIps($id);
+
+    return BannerVisibilityManager::isVisible($startDate, $endDate, $allowedIps);
   }
 
 }

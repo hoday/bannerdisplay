@@ -8,10 +8,15 @@
 
 	<body>
 		<?php
-		
+
 			require_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 			// delete this next line later
 			require_once 'setup.php';
+
+			$bannerView = Hoday\Banners\BannerService::getPath(1);
+
+
+			$bannerView = new  Hoday\Banners\BannerView();
 
 
 		?>
@@ -23,13 +28,13 @@
 		<div>
 			<?php
 
-				$bannerManager->printBanner('banner_active');
+				$bannerView->show(1);
 			?>
 		</div>
 		<p>This banner will not be displayed: </p>
 		<div>
 			<?php
-				$bannerManager->printBanner('banner_inactive');
+				$bannerView->show(2);
 			?>
 		</div>
 	</body>
