@@ -10,7 +10,9 @@ class BannerView {
 
   public static function show($bannerId) {
 
-    if (\Hoday\Banners\BannerService::isVisible($bannerId)) {
+    $isVisible = \Hoday\Banners\BannerService::isVisible($bannerId);
+    echo "visible: ".$isVisible;
+    if ($isVisible) {
       $bannerPath = \Hoday\Banners\BannerService::getPath($bannerId);
 
   		ob_start();

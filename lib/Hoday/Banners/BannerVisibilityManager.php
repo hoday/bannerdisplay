@@ -18,8 +18,13 @@ class BannerVisibilityManager {
 	 */
 	 public static function isVisible($startDate, $endDate, $allowedIps) {
 
+
 		$date 	= self::getCurrentDate();
 		$ip 		= self::getCurrentIp();
+
+		$startDate 	= (new DateTime($startDate))->getTimestamp();
+		$endDate 		= (new DateTime($endDate))->getTimestamp();
+		$date 			= $date->getTimestamp();
 
 		$isDuringPeriod = ($date >= $startDate) && ($date <= $endDate) ;
 		$isBeforePeriod = ($date < $startDate);
@@ -43,7 +48,7 @@ class BannerVisibilityManager {
 	 * @return int Timestamp
 	 */
 	protected static function getCurrentDate() {
-		return (new DateTime())->getTimestamp();
+		return new DateTime();
 	}
 
 	/**

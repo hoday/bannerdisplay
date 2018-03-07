@@ -30,21 +30,21 @@ if ($pdo != null) {
 		echo 'Whoops, could not connect to the SQLite database!';
 }
 
-/*
+
 (new App\SQLiteCreateTable($pdo))->createTables();
-*/
 
-/*
-$bannerManager = new Hoday\Banners\BannerManagerDb($pdo);
-*/
 
-/*
+
+//$bannerManager = new Hoday\Banners\BannerManagerDb($pdo);
+
+
+
 foreach($bannerSettings as $bannerSetting) {
-	$bannerManager->registerBanner($bannerSetting['name'], $bannerSetting['path']);
-	$bannerManager->setBannerPeriod($bannerSetting['name'], $bannerSetting['start_date'], $bannerSetting['end_date']);
+	\Hoday\Banners\BannerService::create($bannerSetting['path'],  $bannerSetting['start_date'], $bannerSetting['end_date'], $allowedIPs);
 
+/*
 	foreach($allowedIPs as $allowedIP) {
-		$bannerManager->registerAllowedIp($bannerSetting['name'], $allowedIP);
+		\Hoday\Banners\BannerService::registerAllowedIp($allowedIP);
 	}
+	*/
 }
-*/

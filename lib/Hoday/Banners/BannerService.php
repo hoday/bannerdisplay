@@ -17,7 +17,7 @@ class BannerService {
 	 * @param  String $bannerPath Path to the banner graphic
 	 */
 	public static function create($bannerPath, $startDate, $endDate, $allowedIps) {
-		BannerDataMapper::registerBanner($bannerName, $bannerPath);
+		BannerDataMapper::create($bannerPath, $startDate, $endDate, $allowedIps);
 	}
 
   public static function getPath($id) {

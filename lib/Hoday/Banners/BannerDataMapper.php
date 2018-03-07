@@ -19,11 +19,15 @@ class BannerDataMapper {
     $stmt = \App\SQLiteConnection::getInstance()->prepare($sql);
 
 		$stmt->bindValue(':banner_path', $bannerPath);
-		$stmt->startDate(':start_date', $start_date);
-		$stmt->endDate(':end_date', $end_date);
+		$stmt->bindValue(':start_date', $startDate);
+		$stmt->bindValue(':end_date', $endDate);
 
     $stmt->execute();
-		return \App\SQLiteConnection::getInstance()->lastInsertId();
+
+		$id = \App\SQLiteConnection::getInstance()->lastInsertId();
+		self::registerAllowedIps($id, $allowedIps);
+
+		return $id;
 	}
 
 	public static function get($id) {
@@ -129,17 +133,62 @@ class BannerDataMapper {
 
   public static function registerAllowedIp($bannerId, $allowedIp) {
 
-				$sql = 'INSERT INTO allowed_ips(allowed_ip)
-								VALUES(:allowed_ip);
-								INSERT INTO banner_allowed_ips(banner_id, ip_id)
-								VALUES(:banner_id, LAST_INSERT_ID())';
+				$sql1 = 'INSERT INTO allowed_ips(ip)
+								VALUES(:ip)';
+				$sql2 = 'SELECT ip_id FROM allowed_ips
+				        WHERE allowed_ips.ip = :ip';
+				$sql3 = 'INSERT INTO banner_allowed_ips(banner_id, ip_id)
+								VALUES(:banner_id, :ip_id)';
 
-				$stmt = \App\SQLiteConnection::getInstance()->prepare($sql);
-				$stmt->bindValue(':banner_id', $bannerId);
-				$stmt->bindValue(':allowed_ip', $allowedIp);
-				return $stmt->execute();
+				$stmt1 = \App\SQLiteConnection::getInstance()->prepare($sql1);
+				$stmt2 = \App\SQLiteConnection::getInstance()->prepare($sql2);
+				$stmt3 = \App\SQLiteConnection::getInstance()->prepare($sql3);
+
+				$stmt1->bindValue(':ip', $allowedIp);
+				$stmt1->execute();
+
+				$stmt2->bindValue(':ip', $allowedIp);
+				$stmt2->execute();
+				$row = $stmt2->fetch(\PDO::FETCH_ASSOC);
+
+				$ipId = $row['ip_id'];
+
+				$stmt3->bindValue(':banner_id', $bannerId);
+				$stmt3->bindValue(':ip_id', $ipId);
+				$stmt3->execute();
+
+				return ;
 
   }
+
+	public static function registerAllowedIps($bannerId, $allowedIps) {
+
+		$sql1 = 'INSERT INTO allowed_ips(ip)
+						VALUES(:ip)';
+		$sql2 = 'SELECT ip_id FROM allowed_ips
+						WHERE allowed_ips.ip = :ip';
+		$sql3 = 'INSERT INTO banner_allowed_ips(banner_id, ip_id)
+						VALUES(:banner_id, :ip_id)';
+
+		$stmt1 = \App\SQLiteConnection::getInstance()->prepare($sql1);
+		$stmt2 = \App\SQLiteConnection::getInstance()->prepare($sql2);
+		$stmt3 = \App\SQLiteConnection::getInstance()->prepare($sql3);
+
+		forEach ($allowedIps as  $allowedIp) {
+			$stmt1->bindValue(':ip', $allowedIp);
+			$stmt1->execute();
+
+			$stmt2->bindValue(':ip', $allowedIp);
+			$stmt2->execute();
+			$row = $stmt2->fetch(\PDO::FETCH_ASSOC);
+
+			$ipId = $row['ip_id'];
+
+			$stmt3->bindValue(':banner_id', $bannerId);
+			$stmt3->bindValue(':ip_id', $ipId);
+			$stmt3->execute();
+		}
+	}
 
   public static function deregisterAllowedIp($bannerId, $allowedIp) {
     BannerDataMapper::deregisterAllowedIp($bannerId, $allowedIp);

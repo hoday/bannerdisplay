@@ -26,7 +26,6 @@ class SQLiteCreateTable {
     public function createTables() {
         $commands = ['CREATE TABLE IF NOT EXISTS banners (
                         banner_id   INTEGER PRIMARY KEY,
-                        banner_name TEXT NOT NULL UNIQUE,
                         banner_path TEXT,
                         start_date TEXT,
                         end_date TEXT
@@ -37,6 +36,10 @@ class SQLiteCreateTable {
                     FOREIGN KEY (ip_id)
                     REFERENCES allowed_ips(ip_id) ON UPDATE CASCADE
                                                   ON DELETE CASCADE
+                   FOREIGN KEY (banner_id)
+                   REFERENCES banners(banner_id) ON UPDATE CASCADE
+                                                 ON DELETE CASCADE
+                   CONSTRAINT pk PRIMARY KEY (banner_id, ip_id)
                   )',
             'CREATE TABLE IF NOT EXISTS allowed_ips (
                     ip_id INTEGER PRIMARY KEY,
