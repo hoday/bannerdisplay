@@ -20,6 +20,15 @@ class BannerService {
 		BannerDataMapper::create($bannerPath, $startDate, $endDate, $allowedIps);
 	}
 
+  public static function get($id) {
+    return BannerDataMapper::get($id);
+  }
+
+  public static function getAll() {
+    return BannerDataMapper::getAll();
+  }
+
+
   public static function getPath($id) {
     return BannerDataMapper::getPath($id);
   }

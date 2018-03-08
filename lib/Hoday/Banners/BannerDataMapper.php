@@ -31,18 +31,67 @@ class BannerDataMapper {
 	}
 
 	public static function get($id) {
-		$sql = 'SELECT banner_path, start_date, end_date, allowed_ip from banners, allowed_ips, banner_allowed_ips WHERE banners.banner_id = :banner_id, banners.banner_id = banner_allowed_ips.banner_id, banner_allowed_ips.ip_id = allowed_ips.ip_id';
+		$sql = 'SELECT banners.banner_id, banner_path, start_date, end_date, ip
+						FROM
+						banners
+						JOIN banner_allowed_ips
+						ON banners.banner_id = banner_allowed_ips.banner_id
+						JOIN allowed_ips
+						ON allowed_ips.ip_id = banner_allowed_ips.ip_id
+						WHERE banners.banner_id = :banner_id';
 		$stmt = \App\SQLiteConnection::getInstance()->prepare($sql);
 		$stmt->bindValue(':banner_id', $bannerId);
 		$stmt->execute();
 
-		$row = $stmt->fetch(\PDO::FETCH_ASSOC);
-		return $row;
+
+				$banners = [];
+				$banner_id_prev = 0;
+				while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+					$banner_id = $row['banner_id'];
+					if ($banner_id != $banner_id_prev) {
+						$banners[] = array(
+							'banner_id' => $row['banner_id'],
+							'banner_path' => $row['banner_path'],
+							'start_date' => new \DateTime($row['start_date']),
+							'end_date' => new \DateTime($row['end_date']),
+							'allowed_ips' => array()
+						);
+					}
+					$banner_id_prev = $banner_id;
+					array_push($banners[count($banners) - 1]['allowed_ips'], $row['ip']);
+				}
+				return $banners;
 
 	}
 
 	public static function getAll() {
+		$sql = 'SELECT banners.banner_id, banner_path, start_date, end_date, ip
+						FROM
+						banners
+						JOIN banner_allowed_ips
+						ON banners.banner_id = banner_allowed_ips.banner_id
+						JOIN allowed_ips
+						ON allowed_ips.ip_id = banner_allowed_ips.ip_id';
+		$stmt = \App\SQLiteConnection::getInstance()->prepare($sql);
+		$stmt->execute();
 
+		$banners = [];
+		$banner_id_prev = 0;
+		while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+			$banner_id = $row['banner_id'];
+			if ($banner_id != $banner_id_prev) {
+				$banners[] = array(
+					'banner_id' => $row['banner_id'],
+					'banner_path' => $row['banner_path'],
+					'start_date' => new \DateTime($row['start_date']),
+					'end_date' => new \DateTime($row['end_date']),
+					'allowed_ips' => array()
+				);
+			}
+			$banner_id_prev = $banner_id;
+			array_push($banners[count($banners) - 1]['allowed_ips'], $row['ip']);
+		}
+		return $banners;
 	}
 
   public static function getPath($bannerId) {

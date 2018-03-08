@@ -26,7 +26,7 @@
 		<p>All banners: </p>
 		<div>
 			<?php
-				 $bannerManager->printAllBanners();
+				 \Hoday\Banners\BannerManageView::show();
 
 			?>
 		</div>
