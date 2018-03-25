@@ -13,10 +13,13 @@ class BannerVisibilityManager {
 	}
 
 	/**
-	 * Returns true if the banner is visible
-	 * @return boolean true if banner is visible
+	 * 	Returns true if the banner is visible
+	 * @param  string $startDate  start date of the display period
+	 * @param  string $endDate    end date of the display period
+	 * @param  array  $allowedIps array of IP addresses that are allowed to see the banner
+	 * @return bool            	  true if banner is visible
 	 */
-	 public static function isVisible($startDate, $endDate, $allowedIps) {
+	 public static function isVisible(string $startDate, string $endDate, array $allowedIps) : bool {
 
 
 		$date 	= static::getCurrentDate();
@@ -35,18 +38,18 @@ class BannerVisibilityManager {
 	}
 
 	/**
-	 * getCurrentDate Gets current date
-	 * @return int Timestamp
+	 * gets the current date
+	 * @return DateTime 	current date
 	 */
-	protected static function getCurrentDate() {
+	protected static function getCurrentDate() : DateTime{
 		return new DateTime();
 	}
 
 	/**
 	 * getCurrentIp Returns current IP
-	 * @return String Current IP
+	 * @return string Current IP
 	 */
-	protected static function getCurrentIp() {
+	protected static function getCurrentIp() : string {
 		return $_SERVER['REMOTE_ADDR'];
 	}
 

@@ -9,7 +9,10 @@ class BannerManageView {
   public function __construct() {
 	}
 
-  public static function show() {
+  /**
+   * prints the html for the banner mnager view
+   */
+  public static function show()  {
 
     $banners = \Hoday\Banners\BannerService::getAll();
     $formatString = self::FORMAT_STRING;

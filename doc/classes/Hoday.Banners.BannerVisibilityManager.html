@@ -114,12 +114,12 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">146</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">100</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="../reports/markers.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">1</span>
                                 </a>
                             </li>
                             <li>
@@ -144,28 +144,28 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-778394011"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-774097883"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-778394011" class="accordion-body collapse in">
+            <div id="namespace-774097883" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1084564967"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-51434740"></a>
                                 <a href="../namespaces/Hoday.html" style="margin-left: 30px; padding-left: 0">Hoday</a>
             </div>
-            <div id="namespace-1084564967" class="accordion-body collapse ">
+            <div id="namespace-51434740" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1473374410"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-877542318"></a>
                                 <a href="../namespaces/Hoday.Banners.html" style="margin-left: 30px; padding-left: 0">Banners</a>
             </div>
-            <div id="namespace-1473374410" class="accordion-body collapse ">
+            <div id="namespace-877542318" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -305,26 +305,26 @@
             <article class="method">
                 <h3 class="public ">isVisible()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">isVisible(  <span class="argument">$startDate</span>,   <span class="argument">$endDate</span>,   <span class="argument">$allowedIps</span>) : boolean</pre>
+                <pre class="signature" style="margin-right: 54px;">isVisible(string  <span class="argument">$startDate</span>, string  <span class="argument">$endDate</span>, array  <span class="argument">$allowedIps</span>) : boolean</pre>
                 <p><em>Returns true if the banner is visible</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$startDate </td>
-                                <td></td>
+                                <td><p>start date of the display period</p></td>
                             </tr>
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$endDate </td>
-                                <td></td>
+                                <td><p>end date of the display period</p></td>
                             </tr>
                                                     <tr>
-                                <td></td>
+                                <td>array</td>
                                 <td>$allowedIps </td>
-                                <td></td>
+                                <td><p>array of IP addresses that are allowed to see the banner</p></td>
                             </tr>
                                             </table>
                 
@@ -353,15 +353,15 @@
             <article class="method">
                 <h3 class="protected ">getCurrentDate()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getCurrentDate() : integer</pre>
-                <p><em>getCurrentDate Gets current date</em></p>
+                <pre class="signature" style="margin-right: 54px;">getCurrentDate() : \DateTime</pre>
+                <p><em>gets the current date</em></p>
                 
 
                 
                 
                                     <h4>Returns</h4>
-                    integer
-                                            &mdash; <p>Timestamp</p>
+                    \DateTime
+                                            &mdash; <p>current date</p>
                                     				
                             </article>
         </div>
@@ -383,14 +383,14 @@
             <article class="method">
                 <h3 class="protected ">getCurrentIp()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getCurrentIp() : String</pre>
+                <pre class="signature" style="margin-right: 54px;">getCurrentIp() : string</pre>
                 <p><em>getCurrentIp Returns current IP</em></p>
                 
 
                 
                 
                                     <h4>Returns</h4>
-                    String
+                    string
                                             &mdash; <p>Current IP</p>
                                     				
                             </article>
@@ -483,7 +483,7 @@
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on March 25th, 2018 at 13:03.
+                    on March 25th, 2018 at 17:56.
                 </section>
             </section>
         </section>

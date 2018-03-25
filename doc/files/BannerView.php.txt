@@ -8,7 +8,11 @@ class BannerView {
 		//$this->bannerService =$bannerServiceo;
 	}
 
-  public static function show($bannerId) {
+  /**
+   * prints html for displaying a banner
+   * @param  int $bannerId    id of the banner
+   */
+  public static function show(int $bannerId) {
 
     $isVisible = \Hoday\Banners\BannerService::isVisible($bannerId);
     if ($isVisible) {

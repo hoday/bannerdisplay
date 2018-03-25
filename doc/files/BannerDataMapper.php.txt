@@ -3,18 +3,27 @@
 namespace Hoday\Banners;
 
 /**
- * Provides a user interface to manage banners
- * @package BannerManager
+ * Maps banner data to the database
  */
 class BannerDataMapper {
 
 	protected $pdo;
 
-	private function __construct($pdo) {
+	private function __construct(PDO $pdo) {
 		// = \App\SQLiteConnection::getInstance();
+		// // TODO: convert this class to object, not static
+		// and make use of this pdo variable instead of getting sqlite connection directly
 	}
 
-	public static function create($bannerPath, $startDate, $endDate, $allowedIps) {
+	/**
+	 * Creates a new entry in the database for a banner
+	 * @param  string $bannerPath path to banner graphic
+	 * @param  string $startDate  start date of period to display banner
+	 * @param  string $endDate    end date of period to display banner
+	 * @param  array $allowedIps 	array of allowed IP addresses
+	 * @return int		            id of banner that was created
+	 */
+	public static function create(string $bannerPath, string $startDate, string $endDate, array $allowedIps) : int {
 		$sql = 'INSERT INTO banners(banner_path, start_date, end_date) VALUES(:banner_path, :start_date, :end_date)';
     $stmt = \App\SQLiteConnection::getInstance()->prepare($sql);
 
@@ -25,12 +34,20 @@ class BannerDataMapper {
     $stmt->execute();
 
 		$id = \App\SQLiteConnection::getInstance()->lastInsertId();
+		$id = intval($id);
+
 		self::registerAllowedIps($id, $allowedIps);
+
 
 		return $id;
 	}
 
-	public static function get($id) {
+	/**
+	 * Get banner info by id
+	 * @param  int $bannerId 			id of banner
+	 * @return array     					info about banner
+	 */
+	public static function get(int $bannerId) : array {
 		$sql = 'SELECT banners.banner_id, banner_path, start_date, end_date, ip
 						FROM
 						banners
@@ -64,7 +81,11 @@ class BannerDataMapper {
 
 	}
 
-	public static function getAll() {
+	/**
+	 * get info about all banners
+	 * @return array array of info about all banners
+	 */
+	public static function getAll() : array {
 		$sql = 'SELECT banners.banner_id, banner_path, start_date, end_date, ip
 						FROM
 						banners
@@ -94,7 +115,12 @@ class BannerDataMapper {
 		return $banners;
 	}
 
-  public static function getPath($bannerId) {
+	/**
+	 * gets the path to the graphic of a banner
+	 * @param  int $bannerId 			id of the banner
+	 * @return string          	 	path
+	 */
+  public static function getPath(int $bannerId) : string {
 		$sql = 'SELECT banner_path from banners WHERE banner_id = :banner_id';
 		$stmt = \App\SQLiteConnection::getInstance()->prepare($sql);
 		$stmt->bindValue(':banner_id', $bannerId);
@@ -105,7 +131,12 @@ class BannerDataMapper {
 
   }
 
-  public static function getStartDate($bannerId) {
+	/**
+	 * gets the start date of the banner display period
+	 * @param  int $bannerId 			id of the banner
+	 * @return string           	start date
+	 */
+  public static function getStartDate(int $bannerId) : string {
 		$sql = 'SELECT start_date from banners WHERE banner_id = :banner_id';
 		$stmt = \App\SQLiteConnection::getInstance()->prepare($sql);
 		$stmt->bindValue(':banner_id', $bannerId);
@@ -115,7 +146,12 @@ class BannerDataMapper {
 		return $row['start_date'];
 	}
 
-  public static function getEndDate($bannerId) {
+	/**
+	 * gets the end date of the banner display period
+	 * @param  int $bannerId 			id of the banner
+	 * @return string           	end date
+	 */
+  public static function getEndDate(int $bannerId) : string {
 		$sql = 'SELECT end_date from banners WHERE banner_id = :banner_id';
 		$stmt = \App\SQLiteConnection::getInstance()->prepare($sql);
 		$stmt->bindValue(':banner_id', $bannerId);
@@ -125,7 +161,12 @@ class BannerDataMapper {
 		return $row['end_date'];
   }
 
-  public static function getAllowedIps($bannerId) {
+	/**
+	 * gets the IP addresses that are allowed to see a banner even before the display period
+	 * @param  int $bannerId 	id of the banner
+	 * @return array         	array of IP addresses
+	 */
+  public static function getAllowedIps(int $bannerId) : array {
 		$sql = 'SELECT ip
 						FROM
 						allowed_ips JOIN banner_allowed_ips
@@ -144,7 +185,12 @@ class BannerDataMapper {
 		return $allowedIps;
   }
 
-  public static function setPath($bannerId, $bannerPath) {
+	/**
+	 * sets the path for the graphic for a banner
+	 * @param int $bannerId   		id of the banner
+	 * @param string $bannerPath 	path to the graphic for the banner
+	 */
+  public static function setPath(int $bannerId, string $bannerPath) {
 		$sql = "UPDATE banners "
 	          . "SET banner_path = :banner_path "
 	          . "WHERE banner_id = :banner_id";
@@ -154,7 +200,12 @@ class BannerDataMapper {
 	  return $stmt->execute();
   }
 
-  public static function setStartDate($bannerId, $startDate) {
+	/**
+	 * sets the start date for the display period for a banner
+	 * @param int $bannerId  		id of the banner
+	 * @param string $startDate start date
+	 */
+  public static function setStartDate(int $bannerId, string $startDate) {
 		$sql = "UPDATE banners "
 	          . "SET start_date = :start_date "
 	          . "WHERE banner_id = :banner_id";
@@ -164,7 +215,12 @@ class BannerDataMapper {
 	  return $stmt->execute();
   }
 
-  public static function setEndDate($bannerId, $endDate) {
+	/**
+	 * sets the end date for the display period for a banner
+	 * @param int $bannerId  	id of the banner
+	 * @param string $endDate enddate
+	 */
+  public static function setEndDate(int $bannerId, string $endDate) {
 		$sql = "UPDATE banners "
 	          . "SET end_date = :end_date "
 	          . "WHERE banner_id = :banner_id";
@@ -174,13 +230,23 @@ class BannerDataMapper {
 	  return $stmt->execute();
   }
 
-  public static function setAllowedIps($bannerId, $allowedIps) {
+	/**
+	 * sets the IP addresses that are allowed to see a banner before the display period
+	 * @param int   $bannerId   id of the banner
+	 * @param array $allowedIps array of allowed IP addresses
+	 */
+  public static function setAllowedIps(int $bannerId, array $allowedIps) {
 
 
 
   }
 
-  public static function registerAllowedIp($bannerId, $allowedIp) {
+	/**
+	 * registers an IP address that is allowed to see a banner before the display period
+	 * @param int   $bannerId   id of the banner
+	 * @param string $allowedIp allowed IP address
+	 */
+  public static function registerAllowedIp(int $bannerId, string $allowedIp) {
 
 				$sql1 = 'INSERT INTO allowed_ips(ip)
 								VALUES(:ip)';
@@ -210,7 +276,12 @@ class BannerDataMapper {
 
   }
 
-	public static function registerAllowedIps($bannerId, $allowedIps) {
+	/**
+	 * registers IP addresses that are allowed to see a banner before the display period
+	 * @param int   $bannerId   id of the banner
+	 * @param array $allowedIps allowed IP addresses
+	 */
+	public static function registerAllowedIps(int $bannerId, array $allowedIps) {
 
 		$sql1 = 'INSERT INTO allowed_ips(ip)
 						VALUES(:ip)';
@@ -239,17 +310,27 @@ class BannerDataMapper {
 		}
 	}
 
-  public static function deregisterAllowedIp($bannerId, $allowedIp) {
-    BannerDataMapper::deregisterAllowedIp($bannerId, $allowedIp);
+
+	/**
+	 * deregisters an IP address that was allowed to see a banner before the display period
+	 * @param int   $bannerId   	id of the banner
+	 * @param string $allowedIp		 allowed IP address
+	 */
+  public static function deregisterAllowedIp(int $bannerId, string $allowedIp) {
   }
 
-  public static function delete($bannerId) {
+	/**
+	 * deletes a banner
+	 * @param  int    $bannerId id of the banner
+	 * @return bool           	true if a banner was deleted
+	 */
+  public static function delete(int $bannerId) : bool{
 		$sql = 'DELETE FROM banners '
             . 'WHERE banner_id = :banner_id';
     $stmt = \App\SQLiteConnection::getInstance()->prepare($sql);
     $stmt->bindValue(':banner_id', $bannerId);
     $stmt->execute();
-    return $stmt->rowCount();
+    return ($stmt->rowCount() > 0);
 	}
 
 }

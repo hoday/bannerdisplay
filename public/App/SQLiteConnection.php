@@ -21,7 +21,7 @@ class SQLiteConnection {
    * return in instance of the PDO object that connects to the SQLite database
    * @return \PDO
    */
-  public static function getInstance() {
+  public static function getInstance() : \PDO {
     if (self::$instance == null) {
       $dbFile = "sqlite:" . Config::PATH_TO_SQLITE_FILE;
       //$pdo_options[\PDO::ATTR_ERRMODE] = \PDO::ERRMODE_EXCEPTION;
