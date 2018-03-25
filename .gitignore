@@ -1,3 +1,4 @@
 vendor
 /unused
-/docs
+/tmp
+/db

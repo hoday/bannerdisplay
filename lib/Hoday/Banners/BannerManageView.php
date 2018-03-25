@@ -1,0 +1,21 @@
+<?php
+
+namespace Hoday\Banners;
+
+class BannerManageView {
+
+  const FORMAT_STRING = 'Y-m-d H:i:s';
+
+  public function __construct() {
+	}
+
+  public static function show() {
+
+    $banners = \Hoday\Banners\BannerService::getAll();
+    $formatString = self::FORMAT_STRING;
+		ob_start();
+    include('templates/banners_template.php');
+		echo ob_get_clean();
+	}
+
+}

@@ -1,9 +1,24 @@
 <?php
 
-if($_POST['page'] == '#pg1')
-  echo json_encode($pg1);
+require_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+use \Hoday\Banners\BannerService;
 
-if($_POST['page'] == '#pg2')
-  echo json_encode($pg2);
+if ($_GET['action'] == 'edit') {
+    $dataJson = $_GET['dataJson'];
+    $id = $dataJson['id'];
+    $key = trim($dataJson['key']);
+
+    if ($key == 'end_date') {
+      $end_date = $dataJson['val'];
+      BannerService::setEndDate($id, $end_date);
+    } elseif ($key == 'start_date') {
+      $start_date = $dataJson['val'];
+      BannerService::setStartDate($id, $start_date);
+    }
+
+    echo json_encode($dataJson);
+
+
+}
 
 exit();

@@ -1,0 +1,119 @@
+<?php
+
+namespace Hoday\Banners;
+
+/**
+ * Provides a user interface to manage banners
+ * @package BannerManager
+ */
+class BannerManager {
+
+	protected $banners;
+
+	public function __construct() {
+		$this->banners = array();
+	}
+
+	/**
+	 * Registers a banner using a unique name (used to identify the banner) and path of the graphic
+	 * @param  String $bannerName Name of the banner
+	 * @param  String $bannerPath Path to the banner graphic
+	 */
+	public function registerBanner($bannerName, $bannerPath) {
+		$this->banners[$bannerName]['banner'] 											= new Banner($bannerPath);
+		$this->banners[$bannerName]['bannerDisplayController'] 	= new BannerDisplayController();
+	}
+
+	/**
+	 * Deletes a registered banner
+	 * @param  String $bannerName Name of the banner
+	 */
+	public function deleteBanner($bannerName) {
+		unset($this->banners, $bannerName);
+	}
+
+	/**
+	 * Gets the path of the graphic for the banner
+	 * @param  String $bannerName Name of the banner
+	 * @return  String             Path to the banner graphic
+	 */
+	public function getBannerPath($bannerName) {
+		return $this->banners[$bannerName]['banner'];
+	}
+
+	/**
+	 * Sets the path of the graphic for the banner
+	 * @param  String $bannerName Name of the banner
+	 * @param  String $bannerPath Path to the banner graphic
+	 */
+	public function setBannerPath($bannerName, $bannerPath) {
+		$this->banners[$bannerName]['banner'] = new Banner($bannerPath);
+	}
+
+	/**
+	 * Prints the html for the banner of the specified name
+	 * @param  String $bannerName Name of the banner
+	 */
+	public function printBanner($bannerName) {
+		if ($this->banners[$bannerName]['bannerDisplayController']->isShowing()) {
+			$this->banners[$bannerName]['banner']->printBanner();
+
+		}
+	}
+
+	/**
+	 * Sets a start date and end date between which the banner of the specified name should be visible
+	 * @param String $bannerName Name of the banner
+	 * @param String $startDate Start date of the period
+	 * @param String $endDate   End date of the period
+	 */
+	public function setBannerPeriod($bannerName, $startDate, $endDate) {
+		$this->banners[$bannerName]['bannerDisplayController']->setBannerPeriod($startDate, $endDate);
+	}
+
+	public function setBannerStartDate($bannerName, $startDate) {
+		$this->banners[$bannerName]['bannerDisplayController']->setBannerStartDate($startDate);
+	}
+
+	public function setBannerEndDate($bannerName, $endDate) {
+		$this->banners[$bannerName]['bannerDisplayController']->setBannerEndDate($endDate);
+	}
+
+	public function getBannerStartDate($bannerName) {
+		return $this->banners[$bannerName]['bannerDisplayController']->getBannerStartDate();
+	}
+
+	public function getBannerEndDate($bannerName) {
+		return $this->banners[$bannerName]['bannerDisplayController']->getBannerEndDate();
+	}
+
+
+	/**
+	 * Registers an allowed IP address for a named banner
+	 * @param  String $bannerName Name of the banner
+	 * @param  String $ip IP address to register
+	 */
+	public function registerAllowedIp($bannerName, $ip) {
+		$this->banners[$bannerName]['bannerDisplayController']->registerAllowedIp($ip);
+	}
+
+	/**
+	 * Deregisters an allowed IP address for a named banner
+	 * @param  String $bannerName Name of the banner
+	 * @param  String $ip IP address to deregister
+	 */
+	public function deregisterAllowedIp($bannerName, $ip) {
+		$this->banners[$bannerName]['bannerDisplayController']->deregisterAllowedIp($ip);
+	}
+
+/**
+ * Gets allowed IPs
+ * @param  String $bannerName Name of the banner
+ * @return Array              Array of IPs
+ */
+	public function getAllowedIps($bannerName) {
+		return $this->banners[$bannerName]['bannerDisplayController']->getAllowedIps();
+	}
+
+}
+

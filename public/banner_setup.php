@@ -30,6 +30,7 @@
 
 			?>
 		</div>
+
 		<form>
 			<input type="text" id="banner-name" />
 			<div id="add-banner" class="btn btn-primary">
