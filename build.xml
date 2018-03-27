@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="bannerdisplay" default="test" basedir=".">
+
+  <autoloader autoloaderpath="vendor/autoload.php">
+  </autoloader>
+
+  <target name="test" description="Run tests">
+      <echo msg="Testing" />
+      <exec executable="vendor/bin/phpunit" passthru="true">
+      </exec>
+  </target>
+
+</project>
