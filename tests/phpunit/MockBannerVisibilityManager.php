@@ -6,11 +6,11 @@ class MockBannerVisibilityManager extends \Hoday\Banners\BannerVisibilityManager
   static $currentDate;
   static $currentIp;
 
-  public static function setCurrentDate($currentDate) {
+  public static function setCurrentDate(string $currentDate) {
     self::$currentDate = new DateTime($currentDate);
   }
 
-  public static function setCurrentIp($currentIp) {
+  public static function setCurrentIp(string $currentIp) {
     self::$currentIp = $currentIp;
   }
 
@@ -18,7 +18,7 @@ class MockBannerVisibilityManager extends \Hoday\Banners\BannerVisibilityManager
   	 * getCurrentDate Gets current date
   	 * @return int Timestamp
   	 */
-  	protected static function getCurrentDate() {
+  	protected static function getCurrentDate() : \DateTime {
   		return self::$currentDate;
   	}
 
@@ -26,7 +26,7 @@ class MockBannerVisibilityManager extends \Hoday\Banners\BannerVisibilityManager
   	 * getCurrentIp Returns current IP
   	 * @return String Current IP
   	 */
-  	protected static function getCurrentIp() {
+  	protected static function getCurrentIp() : \DateTime {
   		return self::$currentIp;
   	}
 
