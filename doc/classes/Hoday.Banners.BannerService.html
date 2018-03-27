@@ -114,7 +114,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">100</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">61</span>
                                 </a>
                             </li>
                             <li>
@@ -144,28 +144,28 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1591956665"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1630775023"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1591956665" class="accordion-body collapse in">
+            <div id="namespace-1630775023" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2132259754"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-908918476"></a>
                                 <a href="../namespaces/Hoday.html" style="margin-left: 30px; padding-left: 0">Hoday</a>
             </div>
-            <div id="namespace-2132259754" class="accordion-body collapse ">
+            <div id="namespace-908918476" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1908008671"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2044808194"></a>
                                 <a href="../namespaces/Hoday.Banners.html" style="margin-left: 30px; padding-left: 0">Banners</a>
             </div>
-            <div id="namespace-1908008671" class="accordion-body collapse ">
+            <div id="namespace-2044808194" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -270,6 +270,8 @@
                         <section class="row-fluid private">
                             <section class="span4">
                                                                     <a href="../classes/Hoday.Banners.BannerService.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Hoday.Banners.BannerService.html#method_isValidDate" class="">isValidDate()</a><br />
+                                                                    <a href="../classes/Hoday.Banners.BannerService.html#method_isValidPath" class="">isValidPath()</a><br />
                                                             </section>
                             <section class="span4">
                                                                     <em>No private properties found</em>
@@ -372,16 +374,16 @@
             <article class="method">
                 <h3 class="public ">get()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get(\Hoday\Banners\int  <span class="argument">$id</span>) : array</pre>
+                <pre class="signature" style="margin-right: 54px;">get(integer  <span class="argument">$bannerId</span>) : array</pre>
                 <p><em>Get banner info by id</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>\Hoday\Banners\int</td>
-                                <td>$id </td>
-                                <td></td>
+                                <td>integer</td>
+                                <td>$bannerId </td>
+                                <td><p>id of banner</p></td>
                             </tr>
                                             </table>
                 
@@ -440,16 +442,16 @@
             <article class="method">
                 <h3 class="public ">getPath()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getPath(\Hoday\Banners\int  <span class="argument">$id</span>) : string</pre>
+                <pre class="signature" style="margin-right: 54px;">getPath(integer  <span class="argument">$bannerId</span>) : string</pre>
                 <p><em>gets the path to the graphic of a banner</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>\Hoday\Banners\int</td>
-                                <td>$id </td>
-                                <td></td>
+                                <td>integer</td>
+                                <td>$bannerId </td>
+                                <td><p>id of the banner</p></td>
                             </tr>
                                             </table>
                 
@@ -478,16 +480,16 @@
             <article class="method">
                 <h3 class="public ">getStartDate()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getStartDate(\Hoday\Banners\int  <span class="argument">$id</span>) : string</pre>
+                <pre class="signature" style="margin-right: 54px;">getStartDate(integer  <span class="argument">$bannerId</span>) : string</pre>
                 <p><em>gets the start date of the banner display period</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>\Hoday\Banners\int</td>
-                                <td>$id </td>
-                                <td></td>
+                                <td>integer</td>
+                                <td>$bannerId </td>
+                                <td><p>id of the banner</p></td>
                             </tr>
                                             </table>
                 
@@ -516,16 +518,16 @@
             <article class="method">
                 <h3 class="public ">getEndDate()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getEndDate(\Hoday\Banners\int  <span class="argument">$id</span>) : string</pre>
+                <pre class="signature" style="margin-right: 54px;">getEndDate(integer  <span class="argument">$bannerId</span>) : string</pre>
                 <p><em>gets the end date of the banner display period</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>\Hoday\Banners\int</td>
-                                <td>$id </td>
-                                <td></td>
+                                <td>integer</td>
+                                <td>$bannerId </td>
+                                <td><p>id of the banner</p></td>
                             </tr>
                                             </table>
                 
@@ -554,16 +556,16 @@
             <article class="method">
                 <h3 class="public ">getAllowedIps()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getAllowedIps(\Hoday\Banners\int  <span class="argument">$id</span>) : array</pre>
+                <pre class="signature" style="margin-right: 54px;">getAllowedIps(integer  <span class="argument">$bannerId</span>) : array</pre>
                 <p><em>gets the IP addresses that are allowed to see a banner even before the display period</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>\Hoday\Banners\int</td>
-                                <td>$id </td>
-                                <td></td>
+                                <td>integer</td>
+                                <td>$bannerId </td>
+                                <td><p>id of the banner</p></td>
                             </tr>
                                             </table>
                 
@@ -592,16 +594,16 @@
             <article class="method">
                 <h3 class="public ">setPath()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">setPath(\Hoday\Banners\int  <span class="argument">$id</span>, string  <span class="argument">$bannerPath</span>) </pre>
+                <pre class="signature" style="margin-right: 54px;">setPath(integer  <span class="argument">$bannerId</span>, string  <span class="argument">$bannerPath</span>) </pre>
                 <p><em>sets the path for the graphic for a banner</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>\Hoday\Banners\int</td>
-                                <td>$id </td>
-                                <td></td>
+                                <td>integer</td>
+                                <td>$bannerId </td>
+                                <td><p>id of the banner</p></td>
                             </tr>
                                                     <tr>
                                 <td>string</td>
@@ -632,16 +634,16 @@
             <article class="method">
                 <h3 class="public ">setStartDate()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">setStartDate(\Hoday\Banners\int  <span class="argument">$id</span>, string  <span class="argument">$startDate</span>) </pre>
+                <pre class="signature" style="margin-right: 54px;">setStartDate(integer  <span class="argument">$bannerId</span>, string  <span class="argument">$startDate</span>) </pre>
                 <p><em>sets the start date for the display period for a banner</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>\Hoday\Banners\int</td>
-                                <td>$id </td>
-                                <td></td>
+                                <td>integer</td>
+                                <td>$bannerId </td>
+                                <td><p>id of the banner</p></td>
                             </tr>
                                                     <tr>
                                 <td>string</td>
@@ -672,16 +674,16 @@
             <article class="method">
                 <h3 class="public ">setEndDate()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">setEndDate(\Hoday\Banners\int  <span class="argument">$id</span>, string  <span class="argument">$endDate</span>) </pre>
+                <pre class="signature" style="margin-right: 54px;">setEndDate(integer  <span class="argument">$bannerId</span>, string  <span class="argument">$endDate</span>) </pre>
                 <p><em>sets the end date for the display period for a banner</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>\Hoday\Banners\int</td>
-                                <td>$id </td>
-                                <td></td>
+                                <td>integer</td>
+                                <td>$bannerId </td>
+                                <td><p>id of the banner</p></td>
                             </tr>
                                                     <tr>
                                 <td>string</td>
@@ -712,16 +714,16 @@
             <article class="method">
                 <h3 class="public ">setAllowedIps()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">setAllowedIps(\Hoday\Banners\int  <span class="argument">$id</span>, array  <span class="argument">$allowedIps</span>) </pre>
+                <pre class="signature" style="margin-right: 54px;">setAllowedIps(integer  <span class="argument">$bannerId</span>, array  <span class="argument">$allowedIps</span>) </pre>
                 <p><em>sets the IP addresses that are allowed to see a banner before the display period</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>\Hoday\Banners\int</td>
-                                <td>$id </td>
-                                <td></td>
+                                <td>integer</td>
+                                <td>$bannerId </td>
+                                <td><p>id of the banner</p></td>
                             </tr>
                                                     <tr>
                                 <td>array</td>
@@ -752,16 +754,16 @@
             <article class="method">
                 <h3 class="public ">registerAllowedIp()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">registerAllowedIp(\Hoday\Banners\int  <span class="argument">$id</span>, string  <span class="argument">$allowedIp</span>) </pre>
+                <pre class="signature" style="margin-right: 54px;">registerAllowedIp(integer  <span class="argument">$bannerId</span>, string  <span class="argument">$allowedIp</span>) </pre>
                 <p><em>registers an IP address that is allowed to see a banner before the display period</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>\Hoday\Banners\int</td>
-                                <td>$id </td>
-                                <td></td>
+                                <td>integer</td>
+                                <td>$bannerId </td>
+                                <td><p>id of the banner</p></td>
                             </tr>
                                                     <tr>
                                 <td>string</td>
@@ -792,16 +794,16 @@
             <article class="method">
                 <h3 class="public ">registerAllowedIps()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">registerAllowedIps(\Hoday\Banners\int  <span class="argument">$id</span>, array  <span class="argument">$allowedIps</span>) </pre>
+                <pre class="signature" style="margin-right: 54px;">registerAllowedIps(integer  <span class="argument">$bannerId</span>, array  <span class="argument">$allowedIps</span>) </pre>
                 <p><em>registers IP addresses that are allowed to see a banner before the display period</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>\Hoday\Banners\int</td>
-                                <td>$id </td>
-                                <td></td>
+                                <td>integer</td>
+                                <td>$bannerId </td>
+                                <td><p>id of the banner</p></td>
                             </tr>
                                                     <tr>
                                 <td>array</td>
@@ -832,16 +834,16 @@
             <article class="method">
                 <h3 class="public ">deregisterAllowedIp()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">deregisterAllowedIp(\Hoday\Banners\int  <span class="argument">$id</span>, string  <span class="argument">$allowedIp</span>) </pre>
+                <pre class="signature" style="margin-right: 54px;">deregisterAllowedIp(integer  <span class="argument">$bannerId</span>, string  <span class="argument">$allowedIp</span>) </pre>
                 <p><em>deregisters an IP address that was allowed to see a banner before the display period</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>\Hoday\Banners\int</td>
-                                <td>$id </td>
-                                <td></td>
+                                <td>integer</td>
+                                <td>$bannerId </td>
+                                <td><p>id of the banner</p></td>
                             </tr>
                                                     <tr>
                                 <td>string</td>
@@ -872,16 +874,16 @@
             <article class="method">
                 <h3 class="public ">delete()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">delete(\Hoday\Banners\int  <span class="argument">$id</span>) : boolean</pre>
+                <pre class="signature" style="margin-right: 54px;">delete(integer  <span class="argument">$bannerId</span>) : boolean</pre>
                 <p><em>deletes a banner</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>\Hoday\Banners\int</td>
-                                <td>$id </td>
-                                <td></td>
+                                <td>integer</td>
+                                <td>$bannerId </td>
+                                <td><p>id of the banner</p></td>
                             </tr>
                                             </table>
                 
@@ -910,7 +912,7 @@
             <article class="method">
                 <h3 class="public ">isVisible()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">isVisible(integer  <span class="argument">$id</span>) : boolean</pre>
+                <pre class="signature" style="margin-right: 54px;">isVisible(integer  <span class="argument">$bannerId</span>) : boolean</pre>
                 <p><em>returns true if banner is currently visible</em></p>
                 
 
@@ -918,7 +920,7 @@
                     <table class="table table-condensed table-hover">
                                                     <tr>
                                 <td>integer</td>
-                                <td>$id </td>
+                                <td>$bannerId </td>
                                 <td><p>id of the banner</p></td>
                             </tr>
                                             </table>
@@ -959,6 +961,87 @@
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isValidDate" name="method_isValidDate" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">isValidDate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isValidDate(string  <span class="argument">$dateString</span>, string  <span class="argument">$format = \DateTime::ISO8601</span>) : boolean</pre>
+                <p><em>returns true if the string is a valid date</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$dateString </td>
+                                <td><p>date</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$format </td>
+                                <td><p>date string fomat</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>true if the string is a valid date</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isValidPath" name="method_isValidPath" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">isValidPath()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isValidPath(string  <span class="argument">$path</span>) : boolean</pre>
+                <p><em>returns true if the string is a valid path</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$path </td>
+                                <td><p>path</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>true if the string is a valid path</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
                                                             <dl>
                                                                             </dl>
             <h2>Tags</h2>
@@ -1018,7 +1101,7 @@
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on March 25th, 2018 at 17:56.
+                    on March 27th, 2018 at 19:28.
                 </section>
             </section>
         </section>

@@ -2,7 +2,8 @@
     "require": {
         "monolog/monolog": "1.*.*",
         "phpunit/phpunit": "6.5.*",
-        "phing/phing": "3.0.x-dev"
+        "phing/phing": "3.0.x-dev",
+        "squizlabs/php_codesniffer": "*"
     },
     "autoload": {
         "psr-4": {

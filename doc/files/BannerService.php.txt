@@ -19,6 +19,24 @@ class BannerService {
 	 * @return int		            id of banner that was created
 	 */
 	public static function create(string $bannerPath, string $startDate, string $endDate, array $allowedIps) : int {
+		forEach($allowedIps as $allowedIp) {
+			if (!filter_var($allowedIp, FILTER_VALIDATE_IP)) {
+				throw new \InvalidArgumentException('not a valid IP address');
+			}
+		}
+
+		if (!BannerService::isValidDate($startDate)) {
+			throw new \InvalidArgumentException('not a valid date');
+		}
+
+		if (!BannerService::isValidDate($endDate)) {
+			throw new \InvalidArgumentException('not a valid date');
+		}
+
+		if (!BannerService::isValidPath($bannerPath)) {
+			throw new \InvalidArgumentException('not a valid path');
+		}
+
 		return BannerDataMapper::create($bannerPath, $startDate, $endDate, $allowedIps);
 	}
 
@@ -27,8 +45,8 @@ class BannerService {
 	 * @param  int $bannerId 			id of banner
 	 * @return array     					info about banner
 	 */
-  public static function get(int $id) : array {
-    return BannerDataMapper::get($id);
+  public static function get(int $bannerId) : array {
+    return BannerDataMapper::get($bannerId);
   }
 
 	/**
@@ -44,8 +62,8 @@ class BannerService {
 	 * @param  int $bannerId 			id of the banner
 	 * @return string          	 	path
 	 */
-  public static function getPath(int $id) : string {
-    return BannerDataMapper::getPath($id);
+  public static function getPath(int $bannerId) : string {
+    return BannerDataMapper::getPath($bannerId);
   }
 
 	/**
@@ -53,8 +71,8 @@ class BannerService {
 	 * @param  int $bannerId 			id of the banner
 	 * @return string           	start date
 	 */
-  public static function getStartDate(int $id) : string {
-    return BannerDataMapper::getStartDate($id);
+  public static function getStartDate(int $bannerId) : string {
+    return BannerDataMapper::getStartDate($bannerId);
   }
 
 	/**
@@ -62,8 +80,8 @@ class BannerService {
 	 * @param  int $bannerId 			id of the banner
 	 * @return string           	end date
 	 */
-  public static function getEndDate(int $id) : string {
-    return BannerDataMapper::getEndDate($id);
+  public static function getEndDate(int $bannerId) : string {
+    return BannerDataMapper::getEndDate($bannerId);
   }
 
 	/**
@@ -71,8 +89,8 @@ class BannerService {
 	 * @param  int $bannerId 	id of the banner
 	 * @return array         	array of IP addresses
 	 */
-  public static function getAllowedIps(int $id) : array {
-    return BannerDataMapper::getAllowedIps($id);
+  public static function getAllowedIps(int $bannerId) : array {
+    return BannerDataMapper::getAllowedIps($bannerId);
   }
 
 	/**
@@ -80,8 +98,11 @@ class BannerService {
 	 * @param int $bannerId   		id of the banner
 	 * @param string $bannerPath 	path to the graphic for the banner
 	 */
-  public static function setPath(int $id, string $bannerPath) {
-    BannerDataMapper::setPath($id, $bannerPath);
+  public static function setPath(int $bannerId, string $bannerPath) {
+		if (!BannerService::isValidPath($bannerPath)) {
+			throw new \InvalidArgumentException('not a valid path');
+		}
+    BannerDataMapper::setPath($bannerId, $bannerPath);
   }
 
 	/**
@@ -89,8 +110,11 @@ class BannerService {
 	 * @param int $bannerId  		id of the banner
 	 * @param string $startDate start date
 	 */
-  public static function setStartDate(int $id, string $startDate) {
-    BannerDataMapper::setStartDate($id, $startDate);
+  public static function setStartDate(int $bannerId, string $startDate) {
+		if (!BannerService::isValidDate($startDate)) {
+			throw new \InvalidArgumentException('not a valid date');
+		}
+	  BannerDataMapper::setStartDate($bannerId, $startDate);
   }
 
 	/**
@@ -98,8 +122,11 @@ class BannerService {
 	 * @param int $bannerId  	id of the banner
 	 * @param string $endDate enddate
 	 */
-  public static function setEndDate(int $id, string $endDate) {
-    BannerDataMapper::setEndDate($id, $endDate);
+  public static function setEndDate(int $bannerId, string $endDate) {
+		if (!BannerService::isValidDate($endDate)) {
+			throw new \InvalidArgumentException('not a valid date');
+		}
+    BannerDataMapper::setEndDate($bannerId, $endDate);
   }
 
 	/**
@@ -107,8 +134,13 @@ class BannerService {
 	 * @param int   $bannerId   id of the banner
 	 * @param array $allowedIps array of allowed IP addresses
 	 */
-  public static function setAllowedIps(int $id, array $allowedIps) {
-    BannerDataMapper::setAllowedIps($id, $allowedIps);
+  public static function setAllowedIps(int $bannerId, array $allowedIps) {
+		forEach($allowedIps as $allowedIp) {
+			if (!filter_var($allowedIp, FILTER_VALIDATE_IP)) {
+				throw new InvalidArgumentException('not a valid IP address');
+			}
+		}
+    BannerDataMapper::setAllowedIps($bannerId, $allowedIps);
   }
 
 	/**
@@ -116,8 +148,13 @@ class BannerService {
 	 * @param int   $bannerId   id of the banner
 	 * @param string $allowedIp allowed IP address
 	 */
-  public static function registerAllowedIp(int $id, string $allowedIp) {
-    BannerDataMapper::registerAllowedIp($id, $allowedIp);
+  public static function registerAllowedIp(int $bannerId, string $allowedIp) {
+
+		if (filter_var($allowedIp, FILTER_VALIDATE_IP)) {
+			BannerDataMapper::registerAllowedIp($bannerId, $allowedIp);
+		} else {
+			throw new InvalidArgumentException('not a valid IP address');
+		}
   }
 
 	/**
@@ -125,41 +162,72 @@ class BannerService {
 	 * @param int   $bannerId   id of the banner
 	 * @param array $allowedIps allowed IP addresses
 	 */
-	public static function registerAllowedIps(int $id, array $allowedIps) {
-		BannerDataMapper::registerAllowedIps($id, $allowedIp);
-  }
+	public static function registerAllowedIps(int $bannerId, array $allowedIps) {
+		forEach($allowedIps as $allowedIp) {
+			if (!filter_var($allowedIp, FILTER_VALIDATE_IP)) {
+				throw new InvalidArgumentException('not a valid IP address');
+			}
+		}
+		BannerDataMapper::registerAllowedIps($bannerId, $allowedIp);
+	}
 
 	/**
 	 * deregisters an IP address that was allowed to see a banner before the display period
 	 * @param int   $bannerId   	id of the banner
 	 * @param string $allowedIp		 allowed IP address
 	 */
-  public static function deregisterAllowedIp(int $id, string $allowedIp) {
-    BannerDataMapper::deregisterAllowedIp($id, $allowedIp);
-  }
+  public static function deregisterAllowedIp(int $bannerId, string $allowedIp) {
+		if (filter_var($allowedIp, FILTER_VALIDATE_IP)) {
+			BannerDataMapper::deregisterAllowedIp($bannerId, $allowedIp);
+		} else {
+			throw new InvalidArgumentException('not a valid IP address');
+		}
+	}
 
 	/**
 	 * deletes a banner
 	 * @param  int    $bannerId id of the banner
 	 * @return bool           	true if a banner was deleted
 	 */
-  public static function delete(int $id) : bool {
-		return BannerDataMapper::delete($id);
+  public static function delete(int $bannerId) : bool {
+		return BannerDataMapper::delete($bannerId);
 	}
 
 	/**
 	 * returns true if banner is currently visible
-	 * @param  int  $id id of the banner
+	 * @param  int  $bannerId id of the banner
 	 * @return bool     true if banner is visible
 	 */
-  public static function isVisible(int $id) : bool {
+  public static function isVisible(int $bannerId) : bool {
 
-    $startDate  = BannerDataMapper::getStartDate($id);
-    $endDate    = BannerDataMapper::getEndDate($id);
-    $allowedIps = BannerDataMapper::getAllowedIps($id);
+    $startDate  = BannerDataMapper::getStartDate($bannerId);
+    $endDate    = BannerDataMapper::getEndDate($bannerId);
+    $allowedIps = BannerDataMapper::getAllowedIps($bannerId);
 
     return BannerVisibilityManager::isVisible($startDate, $endDate, $allowedIps);
   }
+
+	/**
+	 * returns true if the string is a valid date
+	 * @param  string $dateString date
+	 * @param  string $format     date string fomat
+	 * @return bool               true if the string is a valid date
+	 */
+	private static function isValidDate(string $dateString, string $format =  \DateTime::ISO8601) : bool {
+
+	  $dateTime = \DateTime::createFromFormat($format, $dateString);
+    return $dateTime && $dateTime->format($format) == $dateString;
+	}
+
+	/**
+	 * returns true if the string is a valid path
+	 * @param  string $path 			path
+	 * @return bool               true if the string is a valid path
+	 */
+	private static function isValidPath(string $path) : bool {
+
+		return realpath($path);
+	}
 
 }
 

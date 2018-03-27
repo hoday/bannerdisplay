@@ -4,10 +4,26 @@
   <autoloader autoloaderpath="vendor/autoload.php">
   </autoloader>
 
-  <target name="test" description="Run tests">
-      <echo msg="Testing" />
+  <target name="test" description="Run PHPUnit tests">
+      <echo msg="Run PHPUnit tests" />
       <exec executable="vendor/bin/phpunit" passthru="true">
       </exec>
   </target>
+	
+	<target name="codesniffer" description="Run PHP Code Sniffer">
+      <echo msg="Run PHP Code Sniffer" />
+      <exec command=".\vendor\bin\phpcs tests" passthru="true">
+      </exec>
+  </target>
 
+	<target name="phpdocumentor" description="Run PHPDocumentor">
+      <echo msg="Run PHPDocumentor" />
+      <exec command="php C:\xampp\php\lib\phpDocumentor.phar" passthru="true">
+      </exec>
+  </target>
+	
+	<target name="build" depends="test,codesniffer,phpdocumentor">
+	
+	</target>
+	
 </project>
