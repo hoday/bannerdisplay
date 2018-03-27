@@ -26,7 +26,7 @@ class MockBannerVisibilityManager extends \Hoday\Banners\BannerVisibilityManager
   	 * getCurrentIp Returns current IP
   	 * @return String Current IP
   	 */
-  	protected static function getCurrentIp() : \DateTime {
+  	protected static function getCurrentIp() : string {
   		return self::$currentIp;
   	}
 
