@@ -2,16 +2,20 @@
 /**
  * Defines BannerVisibilityManagerTest class
  *
- * @category Categoy
- * @package  Package
+ * PHP version 7
+ *
+ * @category Pear
+ * @package  BannerVisibilityManagerTest
  * @author   Display Name <user@example.com>
- * @license  http:// license
+ * @license  http://www.opensource.org/licenses/mit-license.html  MIT License
  * @link     http://
  */
 
 use PHPUnit\Framework\TestCase;
 
-require 'MockBannerVisibilityManager.php';
+//require 'mockBannerVisibilityManager.php';
+
+//use TestClasses\MockBannerVisibilityManager;
 
 /**
  * PHPUnit test class for BannerVisibilityManager
@@ -45,20 +49,22 @@ class BannerVisibilityManagerTest extends TestCase
         $ipAllowed         = '10.0.0.1';
         $ipDisallowed      = '10.0.0.3';
 
-        MockBannerVisibilityManager::setCurrentDate($dateStringDuring);
-        MockBannerVisibilityManager::setCurrentIp($ipAllowed);
+        $mockBannerVisibilityManager = new TestClasses\MockBannerVisibilityManager();
+
+        $mockBannerVisibilityManager->setCurrentDate($dateStringDuring);
+        $mockBannerVisibilityManager->setCurrentIp($ipAllowed);
         $this->assertTrue(
-            MockBannerVisibilityManager::isVisible(
+            $mockBannerVisibilityManager->isVisible(
                 $dateStringStart,
                 $dateStringEnd,
                 $allowedIps
             ),
             'banner is visible during period for all ips'
         );
-        MockBannerVisibilityManager::setCurrentDate($dateStringDuring);
-        MockBannerVisibilityManager::setCurrentIp($ipDisallowed);
+        $mockBannerVisibilityManager->setCurrentDate($dateStringDuring);
+        $mockBannerVisibilityManager->setCurrentIp($ipDisallowed);
         $this->assertTrue(
-            MockBannerVisibilityManager::isVisible(
+            $mockBannerVisibilityManager->isVisible(
                 $dateStringStart,
                 $dateStringEnd,
                 $allowedIps
@@ -66,10 +72,10 @@ class BannerVisibilityManagerTest extends TestCase
             'banner is visible during period for all ips, even disallowed ips'
         );
 
-        MockBannerVisibilityManager::setCurrentDate($dateStringAfter);
-        MockBannerVisibilityManager::setCurrentIp($ipAllowed);
+        $mockBannerVisibilityManager->setCurrentDate($dateStringAfter);
+        $mockBannerVisibilityManager->setCurrentIp($ipAllowed);
         $this->assertFalse(
-            MockBannerVisibilityManager::isVisible(
+            $mockBannerVisibilityManager->isVisible(
                 $dateStringStart,
                 $dateStringEnd,
                 $allowedIps
@@ -77,10 +83,10 @@ class BannerVisibilityManagerTest extends TestCase
             'banner is not visible after period for all ips'
         );
 
-        MockBannerVisibilityManager::setCurrentDate($dateStringAfter);
-        MockBannerVisibilityManager::setCurrentIp($ipDisallowed);
+        $mockBannerVisibilityManager->setCurrentDate($dateStringAfter);
+        $mockBannerVisibilityManager->setCurrentIp($ipDisallowed);
         $this->assertFalse(
-            MockBannerVisibilityManager::isVisible(
+            $mockBannerVisibilityManager->isVisible(
                 $dateStringStart,
                 $dateStringEnd,
                 $allowedIps
@@ -89,10 +95,10 @@ class BannerVisibilityManagerTest extends TestCase
         );
 
 
-        MockBannerVisibilityManager::setCurrentDate($dateStringBefore);
-        MockBannerVisibilityManager::setCurrentIp($ipAllowed);
+        $mockBannerVisibilityManager->setCurrentDate($dateStringBefore);
+        $mockBannerVisibilityManager->setCurrentIp($ipAllowed);
         $this->assertTrue(
-            MockBannerVisibilityManager::isVisible(
+            $mockBannerVisibilityManager->isVisible(
                 $dateStringStart,
                 $dateStringEnd,
                 $allowedIps
@@ -100,10 +106,10 @@ class BannerVisibilityManagerTest extends TestCase
             'banner is visible before period for allowed ips'
         );
 
-        MockBannerVisibilityManager::setCurrentDate($dateStringBefore);
-        MockBannerVisibilityManager::setCurrentIp($ipDisallowed);
+        $mockBannerVisibilityManager->setCurrentDate($dateStringBefore);
+        $mockBannerVisibilityManager->setCurrentIp($ipDisallowed);
         $this->assertFalse(
-            MockBannerVisibilityManager::isVisible(
+            $mockBannerVisibilityManager->isVisible(
                 $dateStringStart,
                 $dateStringEnd,
                 $allowedIps

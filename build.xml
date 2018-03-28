@@ -9,10 +9,10 @@
       <exec executable="vendor/bin/phpunit" passthru="true">
       </exec>
   </target>
-	
-	<target name="codesniffer" description="Run PHP Code Sniffer">
+
+	<target name="sniff" description="Run PHP Code Sniffer">
       <echo msg="Run PHP Code Sniffer" />
-      <exec command=".\vendor\bin\phpcs tests" passthru="true">
+      <exec command=".\vendor\bin\phpcs --ignore=*/templates/* tests lib" passthru="true">
       </exec>
   </target>
 
@@ -21,9 +21,9 @@
       <exec command="php C:\xampp\php\lib\phpDocumentor.phar" passthru="true">
       </exec>
   </target>
-	
-	<target name="build" depends="test,codesniffer,phpdocumentor">
-	
+
+	<target name="build" depends="test,sniff,phpdocumentor">
+
 	</target>
-	
+
 </project>

@@ -40,7 +40,7 @@ if ($pdo != null) {
 
 
 foreach($bannerSettings as $bannerSetting) {
-	\Hoday\Banners\BannerService::create($bannerSetting['path'],  $bannerSetting['start_date'], $bannerSetting['end_date'], $allowedIPs);
+	\Hoday\Banners\BannerService::getInstance()->create($bannerSetting['path'],  $bannerSetting['start_date'], $bannerSetting['end_date'], $allowedIPs);
 
 /*
 	foreach($allowedIPs as $allowedIP) {

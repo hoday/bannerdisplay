@@ -8,6 +8,7 @@
     "autoload": {
         "psr-4": {
             "Hoday\\Banners\\": "lib/Hoday/Banners/",
+            "TestClasses\\": "tests/phpunit/TestClasses/",
             "App\\": "public/app/"}
     },
 	"minimum-stability": "dev",

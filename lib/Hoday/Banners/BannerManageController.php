@@ -1,20 +1,51 @@
 <?php
+/**
+ * Defines BannerManageController class
+ *
+ * PHP version 7
+ *
+ * @category Pear
+ * @package  BannerManageController
+ * @author   Display Name <user@example.com>
+ * @license  http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link     http://
+ */
 
 namespace Hoday\Banners;
 
-class BannerManageController {
+/**
+ * Controller for banner manager
+ *
+ * @category Categoy
+ * @package  Package
+ * @author   Display Name <user@example.com>
+ * @license  http:// license
+ * @link     http://
+ */
+class BannerManageController
+{
 
-  const FORMAT_STRING = 'Y-m-d H:i:s';
+    /**
+     * Creates instance
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+    }
 
-  public function __construct() {
-	}
+    /**
+     * Does action
+     *
+     * @return void
+     */
+    public function do()
+    {
 
-  public static function do() {
+        $ip = $_GET['ip'];
+        $id = $_GET['id'];
 
-    $ip = $_GET['ip'];
-    $id = $_GET['id'];
-
-    $banners = \Hoday\Banners\BannerService::registerIp($id, $ip);
-	}
+        $banners = \Hoday\Banners\BannerService::registerIp($id, $ip);
+    }
 
 }
